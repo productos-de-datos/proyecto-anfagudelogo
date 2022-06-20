@@ -12,10 +12,22 @@ def compute_daily_prices():
 
 
     """
-    raise NotImplementedError("Implementar esta función")
+    import pandas as pd
+
+    df = pd.read_csv('../data_lake/cleansed/precios-horarios.csv')
+    temp = df.copy()
+    temp = temp.groupby('fecha',as_index = False)['precio'].mean()
+    temp.to_csv('../data_lake/business/precios-diarios.csv', index=False) 
+    
+    
+    print(temp.head()) 
+
+
+
+    # raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
     import doctest
-
+    compute_daily_prices()
     doctest.testmod()
