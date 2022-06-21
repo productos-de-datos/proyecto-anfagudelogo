@@ -15,17 +15,19 @@ def clean_data():
     # raise NotImplementedError("Implementar esta función")
     import pandas as pd
 
+    relative_path = "\\".join(__file__.split("\\")[:-2])
     df_acum = pd.DataFrame()
-    for i in range(1997,2022,1):
+    for i in range(1997, 2022, 1):
         df = None
-        df = pd.read_csv('../data_lake/raw/{}.csv'.format(i))
-        temp = pd.melt(df,id_vars=['fecha'],var_name = 'hora', value_name = 'precio')
+        df = pd.read_csv(relative_path + "\\data_lake\\raw\\{}.csv".format(i))
+        temp = pd.melt(df, id_vars=["fecha"], var_name="hora", value_name="precio")
         df_acum = pd.concat([df_acum, temp], axis=0)
-        print(i)
-    
-    df_acum.to_csv('../data_lake/cleansed/precios-horarios.csv',index = False)
+
+        return df_acum
+
 
 if __name__ == "__main__":
     import doctest
-    clean_data()
+
+    # clean_data()
     doctest.testmod()
