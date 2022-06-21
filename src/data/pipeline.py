@@ -12,7 +12,7 @@ En luigi llame las funciones que ya creo.
 
 """
 import luigi
-import clean_data
+from clean_data import clean_data
 from luigi import Task, LocalTarget
 import compute_daily_prices
 import compute_monthly_prices
@@ -40,16 +40,35 @@ class CleaningData(Task):
         try:
             transform_data.transform_data()
         except Exception as e:
-            print(e, "ingest_data_error")
+            print(e, "transform_data_error")
         try:
-            df = clean_data.clean_data()
-            file = open(self.output(), "wb")
+            df = clean_data()
+            file = open(self.output().path, "wb")
             df.to_csv(file, index=False)
 
         except Exception as e:
             print(e, "clean_data_error")
 
     # raise NotImplementedError("Implementar esta función")
+
+
+class DayFile:
+    def requires(self):
+        return CleaningData()
+
+    def output(self):
+        self.relative_path = "\\".join(__file__.split("\\")[:-2])
+        return LocalTarget(
+            self.relative_path + "\\data_lake\\business\\precios-diarios.csv"
+        )
+
+    def run(self):
+        try:
+            df = compute_daily_prices.compute_daily_prices(self.input())
+            file = open(self.input(), "wb")
+            df.to_csv(file, index=False)
+        except Exception as e:
+            print(e, "monthly_report")
 
 
 if __name__ == "__main__":

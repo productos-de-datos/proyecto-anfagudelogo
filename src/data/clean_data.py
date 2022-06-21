@@ -23,7 +23,7 @@ def clean_data():
         temp = pd.melt(df, id_vars=["fecha"], var_name="hora", value_name="precio")
         df_acum = pd.concat([df_acum, temp], axis=0)
 
-        return df_acum
+    return df_acum
 
 
 if __name__ == "__main__":
