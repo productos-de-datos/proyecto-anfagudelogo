@@ -14,10 +14,11 @@ def compute_daily_prices():
     """
     import pandas as pd
 
-    df = pd.read_csv('../data_lake/cleansed/precios-horarios.csv')
+    relative_path = '\\'.join(__file__.split('\\')[:-2])
+    df = pd.read_csv(relative_path+'\\data_lake\\cleansed\\precios-horarios.csv')
     temp = df.copy()
     temp = temp.groupby('fecha',as_index = False)['precio'].mean()
-    temp.to_csv('../data_lake/business/precios-diarios.csv', index=False) 
+    temp.to_csv(relative_path+'\\data_lake\\business\\precios-diarios.csv', index=False) 
     
     
     print(temp.head()) 

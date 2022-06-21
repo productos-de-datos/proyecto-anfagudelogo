@@ -16,13 +16,14 @@ def compute_monthly_prices():
 
     import pandas as pd
 
-    df = pd.read_csv('../data_lake/cleansed/precios-horarios.csv')
+    relative_path = '\\'.join(__file__.split('\\')[:-2])
+    df = pd.read_csv(relative_path+'\\data_lake\\cleansed\\precios-horarios.csv')
     temp = df.copy()
     temp['ano_mes'] = temp['fecha'].map(lambda x:  x[:7])
     temp = temp.groupby('ano_mes',as_index = False)['precio'].mean()
     temp['ano_mes'] = temp['ano_mes'].map(lambda x: x+'-01')
     temp.rename(columns={'ano_mes':'fecha'}, inplace = True)
-    temp.to_csv('../data_lake/business/precios-mensuales.csv', index=False) 
+    temp.to_csv(relative_path+'\\data_lake\\business\\precios-mensuales.csv', index=False) 
     
 
 
