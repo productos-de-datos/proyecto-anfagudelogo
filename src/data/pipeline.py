@@ -52,7 +52,7 @@ class CleaningData(Task):
     # raise NotImplementedError("Implementar esta función")
 
 
-class DayFile:
+class MonthlyReport:
     def requires(self):
         return CleaningData()
 
@@ -64,8 +64,11 @@ class DayFile:
 
     def run(self):
         try:
-            df = compute_daily_prices.compute_daily_prices(self.input())
-            file = open(self.input(), "wb")
+            import pandas as pd
+
+            i = pd.read_csv(self.input().open("r"))
+            df = compute_monthly_prices.compute_monthly_prices(i)
+            file = open(self.output().path, "wb")
             df.to_csv(file, index=False)
         except Exception as e:
             print(e, "monthly_report")
