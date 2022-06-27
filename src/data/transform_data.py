@@ -68,7 +68,7 @@ def transform_data():
         except Exception as e:
             print(e)
 
-    for i in range(1996, 2022, 1):
+    for i in range(1995, 2022, 1):
 
         data = (
             read_data(i)
@@ -78,12 +78,9 @@ def transform_data():
             .pipe(clean_fecha)
         )
 
-        # print(project_path + "/data_lake/raw\{}.csv".format(i))
         data.to_csv(project_path + "/data_lake/raw/{}.csv".format(i), index=False)
 
     # # raise NotImplementedError("Implementar esta función")
-    # print(project_path + "\data_lake\raw\{}.csv".format{'a'})
-    # print(project_path + "b{}".format("a"))
 
 
 if __name__ == "__main__":
