@@ -14,12 +14,15 @@ def clean_data():
     """
     # raise NotImplementedError("Implementar esta función")
     import pandas as pd
+    from create_data_lake import get_project_root
 
-    relative_path = "\\".join(__file__.split("\\")[:-3])
+    project_path = str(get_project_root())
+
     df_acum = pd.DataFrame()
+
     for i in range(1997, 2022, 1):
         df = None
-        df = pd.read_csv(relative_path + "\\data_lake\\raw\\{}.csv".format(i))
+        df = pd.read_csv(project_path + "/data_lake/raw/{}.csv".format(i))
         temp = pd.melt(df, id_vars=["fecha"], var_name="hora", value_name="precio")
         df_acum = pd.concat([df_acum, temp], axis=0)
 

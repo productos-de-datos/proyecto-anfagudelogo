@@ -4,8 +4,6 @@ Módulo de ingestión de datos.
 
 """
 
-import pandas as pd
-
 
 def ingest_data():
     """Ingeste los datos externos a la capa landing del data lake.
@@ -15,12 +13,15 @@ def ingest_data():
     descarga debe realizarse usando únicamente funciones de Python.
 
     """
+
+    import pandas as pd
     import wget
     import glob
     import os
+    from create_data_lake import get_project_root
 
-    relative_path = "\\".join(__file__.split("\\")[:-3])
-    output_directory = os.path.join(relative_path, "data_lake\\landing")
+    project_path = str(get_project_root())
+    output_directory = project_path + "data_lake/landing"
     years_xlsx = [val for val in range(1995, 2016, 1)] + [
         val for val in range(2018, 2022, 1)
     ]
