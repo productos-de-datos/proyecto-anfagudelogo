@@ -21,7 +21,8 @@ def ingest_data():
     from create_data_lake import get_project_root
 
     project_path = str(get_project_root())
-    output_directory = project_path + "data_lake/landing"
+
+    output_directory = project_path + "/data_lake/landing"
     years_xlsx = [val for val in range(1995, 2016, 1)] + [
         val for val in range(2018, 2022, 1)
     ]
