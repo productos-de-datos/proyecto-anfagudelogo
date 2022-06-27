@@ -30,10 +30,10 @@ class CleaningData(Task):
         )
 
     def run(self):
-        # try:
-        #     create_data_lake.create_data_lake()
-        # except Exception as e:
-        #     print(e, "create_data_lake_error")
+        try:
+            create_data_lake.create_data_lake()
+        except Exception as e:
+            print(e, "create_data_lake_error")
         try:
             ingest_data.ingest_data()
         except Exception as e:
