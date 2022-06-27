@@ -58,8 +58,8 @@ if __name__ == "__main__":
 
     compute_monthly_prices()
     doctest.testmod()
-else:
-    import doctest
+# else:
+#     import doctest
 
-    # compute_monthly_prices_pipe()
-    doctest.testmod()
+# compute_monthly_prices_pipe()
+# doctest.testmod()

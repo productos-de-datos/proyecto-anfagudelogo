@@ -50,8 +50,8 @@ if __name__ == "__main__":
 
     compute_daily_prices()
     doctest.testmod()
-else:
-    import doctest
+# else:
+# import doctest
 
-    # compute_daily_prices_pipe()
-    doctest.testmod()
+# # compute_daily_prices_pipe()
+# doctest.testmod()
