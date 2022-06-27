@@ -23,7 +23,7 @@ def create_data_lake():
 
 
     """
-    relative_path = "\\".join(__file__.split("\\")[:-2])
+    relative_path = "\\".join(__file__.split("\\")[:-3])
     os.mkdir(os.path.join(relative_path, "data_lake"))
     os.mkdir(os.path.join(relative_path, "data_lake/landing"))
     os.mkdir(os.path.join(relative_path, "data_lake/raw"))

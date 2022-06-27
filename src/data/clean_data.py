@@ -15,7 +15,7 @@ def clean_data():
     # raise NotImplementedError("Implementar esta función")
     import pandas as pd
 
-    relative_path = "\\".join(__file__.split("\\")[:-2])
+    relative_path = "\\".join(__file__.split("\\")[:-3])
     df_acum = pd.DataFrame()
     for i in range(1997, 2022, 1):
         df = None

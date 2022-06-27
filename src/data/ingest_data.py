@@ -19,7 +19,7 @@ def ingest_data():
     import glob
     import os
 
-    relative_path = "\\".join(__file__.split("\\")[:-2])
+    relative_path = "\\".join(__file__.split("\\")[:-3])
     output_directory = os.path.join(relative_path, "data_lake\\landing")
     years_xlsx = [val for val in range(1995, 2016, 1)] + [
         val for val in range(2018, 2022, 1)

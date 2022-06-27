@@ -11,7 +11,7 @@ def transform_data():
     import glob
     from datetime import datetime
 
-    relative_path = "\\".join(__file__.split("\\")[:-2])
+    relative_path = "\\".join(__file__.split("\\")[:-3])
 
     def clean_columns(data):
         try:
