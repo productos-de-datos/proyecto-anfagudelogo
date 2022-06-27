@@ -16,9 +16,9 @@ import clean_data
 from luigi import Task, LocalTarget
 import compute_daily_prices
 import compute_monthly_prices
-import create_data_lake
 import transform_data
 import ingest_data
+import create_data_lake
 from create_data_lake import get_project_root
 
 
@@ -30,10 +30,10 @@ class CleaningData(Task):
         )
 
     def run(self):
-        # try:
-        #     create_data_lake.create_data_lake()
-        # except Exception as e:
-        #     print(e, "create_data_lake_error")
+        try:
+            create_data_lake.create_data_lake()
+        except Exception as e:
+            print(e, "create_data_lake_error")
         try:
             ingest_data.ingest_data()
         except Exception as e:

@@ -61,5 +61,5 @@ if __name__ == "__main__":
 else:
     import doctest
 
-    compute_monthly_prices_pipe()
+    # compute_monthly_prices_pipe()
     doctest.testmod()
