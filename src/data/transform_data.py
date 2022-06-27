@@ -10,8 +10,9 @@ def transform_data():
     import pandas as pd
     import glob
     from datetime import datetime
+    from create_data_lake import get_project_root
 
-    relative_path = "\\".join(__file__.split("\\")[:-3])
+    project_path = str(get_project_root())
 
     def clean_columns(data):
         try:
@@ -35,8 +36,9 @@ def transform_data():
 
     def read_data(year):
         try:
+
             input_path = glob.glob(
-                relative_path + "\\data_lake\\landing/{}.xl*".format(year)
+                project_path + "/data_lake/landing/{}.xl*".format(year)
             )
             df = pd.read_excel(
                 input_path[0], header=None, usecols=[val for val in range(0, 25, 1)]
@@ -76,9 +78,12 @@ def transform_data():
             .pipe(clean_fecha)
         )
 
-        data.to_csv(relative_path + "\\data_lake\\raw\\{}.csv".format(i), index=False)
+        # print(project_path + "/data_lake/raw\{}.csv".format(i))
+        data.to_csv(project_path + "/data_lake/raw/{}.csv".format(i), index=False)
 
-    # raise NotImplementedError("Implementar esta función")
+    # # raise NotImplementedError("Implementar esta función")
+    # print(project_path + "\data_lake\raw\{}.csv".format{'a'})
+    # print(project_path + "b{}".format("a"))
 
 
 if __name__ == "__main__":
