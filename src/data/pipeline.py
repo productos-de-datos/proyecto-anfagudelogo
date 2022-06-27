@@ -52,14 +52,14 @@ class CleaningData(Task):
     # raise NotImplementedError("Implementar esta función")
 
 
-class MonthlyReport:
+class MonthlyReport(Task):
     def requires(self):
         return CleaningData()
 
     def output(self):
         self.relative_path = "\\".join(__file__.split("\\")[:-3])
         return LocalTarget(
-            self.relative_path + "\\data_lake\\business\\precios-diarios.csv"
+            self.relative_path + "\\data_lake\\business\\precios-mensuales.csv"
         )
 
     def run(self):
@@ -74,8 +74,35 @@ class MonthlyReport:
             print(e, "monthly_report")
 
 
+class DailyReport(Task):
+    def requires(self):
+        return CleaningData()
+
+    def output(self):
+        self.relative_path = "\\".join(__file__.split("\\")[:-3])
+        return LocalTarget(
+            self.relative_path + "\\data_lake\\business\\precios-diarios.csv"
+        )
+
+    def run(self):
+        try:
+            import pandas as pd
+
+            i = pd.read_csv(self.input().open("r"))
+            df = compute_daily_prices.compute_daily_prices(i)
+            file = open(self.output().path, "wb")
+            df.to_csv(file, index=False)
+        except Exception as e:
+            print(e, "daily_report")
+
+
+class FinalRun(Task):
+    def requires(self):
+        return [MonthlyReport(), DailyReport()]
+
+
 if __name__ == "__main__":
     import doctest
 
-    luigi.run(["CleaningData", "--local-scheduler"])
+    luigi.run(["FinalRun", "--local-scheduler"])
     doctest.testmod()

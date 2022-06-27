@@ -1,4 +1,4 @@
-def compute_monthly_prices(path):
+def compute_monthly_prices(df):
     """Compute los precios promedios mensuales.
 
     Usando el archivo data_lake/cleansed/precios-horarios.csv, compute el prcio
@@ -16,7 +16,6 @@ def compute_monthly_prices(path):
 
     import pandas as pd
 
-    df = pd.read_csv(path)
     temp = df.copy()
     temp["ano_mes"] = temp["fecha"].map(lambda x: x[:7])
     temp = temp.groupby("ano_mes", as_index=False)["precio"].mean()

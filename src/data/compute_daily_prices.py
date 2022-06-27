@@ -1,4 +1,4 @@
-def compute_daily_prices(path):
+def compute_daily_prices(df):
     """Compute los precios promedios diarios.
 
     Usando el archivo data_lake/cleansed/precios-horarios.csv, compute el prcio
@@ -13,7 +13,6 @@ def compute_daily_prices(path):
     """
     import pandas as pd
 
-    df = pd.read_csv(path)
     temp = df.copy()
     temp = temp.groupby("fecha", as_index=False)["precio"].mean()
     return temp
