@@ -40,5 +40,5 @@ def create_data_lake():
 if __name__ == "__main__":
     import doctest
 
-    # create_data_lake()
+    create_data_lake()
     doctest.testmod()
