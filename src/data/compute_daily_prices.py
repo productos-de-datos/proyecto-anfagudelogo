@@ -38,9 +38,7 @@ def compute_daily_prices():
 
     temp = pd.read_csv(project_path + "/data_lake/cleansed/precios-horarios.csv")
     temp = temp.groupby("fecha", as_index=False)["precio"].mean()
-    temp.to_csv(
-        project_path + "\\data_lake\\business\\precios-diarios.csv", index=False
-    )
+    temp.to_csv(project_path + "/data_lake/business/precios-diarios.csv", index=False)
 
 
 # raise NotImplementedError("Implementar esta función")
