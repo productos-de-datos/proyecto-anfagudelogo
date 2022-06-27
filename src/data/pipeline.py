@@ -52,26 +52,26 @@ class CleaningData(Task):
     # raise NotImplementedError("Implementar esta función")
 
 
-# class MonthlyReport:
-#     def requires(self):
-#         return CleaningData()
+class MonthlyReport:
+    def requires(self):
+        return CleaningData()
 
-#     def output(self):
-#         self.relative_path = "\\".join(__file__.split("\\")[:-3])
-#         return LocalTarget(
-#             self.relative_path + "\\data_lake\\business\\precios-diarios.csv"
-#         )
+    def output(self):
+        self.relative_path = "\\".join(__file__.split("\\")[:-3])
+        return LocalTarget(
+            self.relative_path + "\\data_lake\\business\\precios-diarios.csv"
+        )
 
-#     def run(self):
-#         try:
-#             import pandas as pd
+    def run(self):
+        try:
+            import pandas as pd
 
-#             i = pd.read_csv(self.input().open("r"))
-#             df = compute_monthly_prices.compute_monthly_prices(i)
-#             file = open(self.output().path, "wb")
-#             df.to_csv(file, index=False)
-#         except Exception as e:
-#             print(e, "monthly_report")
+            i = pd.read_csv(self.input().open("r"))
+            df = compute_monthly_prices.compute_monthly_prices(i)
+            file = open(self.output().path, "wb")
+            df.to_csv(file, index=False)
+        except Exception as e:
+            print(e, "monthly_report")
 
 
 if __name__ == "__main__":
