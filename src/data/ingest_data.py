@@ -43,8 +43,6 @@ def ingest_data():
     # raise NotImplementedError("Implementar esta función")
 
 
-# print("\\".join(__file__.split("\\")[:-3]))
-
 if __name__ == "__main__":
     import doctest
 
