@@ -67,8 +67,8 @@ if __name__ == "__main__":
 
     clean_data()
     doctest.testmod()
-else:
-    import doctest
+# else:
+#     import doctest
 
-    clean_data_pipe()
-    doctest.testmod()
+#     clean_data_pipe()
+#     doctest.testmod()
