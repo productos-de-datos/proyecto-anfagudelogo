@@ -30,7 +30,7 @@ def make_forecasts():
     df = df.set_index("fecha")
     data_test = df[df.index > "2020-12-31"]
 
-    model = pickle.load(open("time_series.pkl", "rb"))
+    model = pickle.load(open("precios-diarios.pkl", "rb"))
 
     result = model.forecast(
         120,
