@@ -30,10 +30,12 @@ def make_forecasts():
     df = df.set_index("fecha")
     data_test = df[df.index > "2020-12-31"]
 
-    model = pickle.load(open("precios-diarios.pkl", "rb"))
+    filename = project_path + "/src/models/precios-diarios.pkl"
+    model = pickle.load(open(filename, "rb"))
+    datos = len(data_test)
 
     result = model.forecast(
-        120,
+        datos,
         exog=data_test[["day_week", "number_week"]].astype(float),
     )
 

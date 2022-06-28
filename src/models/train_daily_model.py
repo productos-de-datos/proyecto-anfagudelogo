@@ -38,8 +38,11 @@ def train_daily_model():
 
     time_series = mod.fit()
 
-    filename = "precios-diarios.pkl"
+    filename = project_path + "/src/models/precios-diarios.pkl"
+
     pickle.dump(time_series, open(filename, "wb"))
+
+    # pickle.dump(time_series, open(filename, "wb"))
 
     # raise NotImplementedError("Implementar esta función")
 
