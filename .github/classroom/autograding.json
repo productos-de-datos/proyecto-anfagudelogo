@@ -123,7 +123,7 @@
     {
       "name": "Test 13",
       "setup": "pip3 install matplotlib sklearn pandas luigi pytest pylint wget glob2 openpyxl xlrd pathlib statsmodels",
-      "run": "pylint",
+      "run": "pylint scr/data/compute_daily_prices.py",
       "input": "",
       "output": "",
       "comparison": "included",
