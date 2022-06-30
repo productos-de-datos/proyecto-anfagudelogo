@@ -2,7 +2,7 @@ def ano_mes(arg1):
     try:
         return str(arg1)[:7]
     except Exception as e:
-            print(e)
+        print(e)
 
 
 def compute_monthly_prices_pipe(df):
@@ -24,7 +24,7 @@ def compute_monthly_prices_pipe(df):
     import pandas as pd
 
     temp = df.copy()
-    temp["ano_mes"] = temp["fecha"].map(lambda x: ano_mes(x)
+    temp["ano_mes"] = temp["fecha"].map(lambda x: ano_mes(x))
     temp = temp.groupby("ano_mes", as_index=False)["precio"].mean()
     temp["ano_mes"] = temp["ano_mes"].map(lambda x: x + "-01")
     temp.rename(columns={"ano_mes": "fecha"}, inplace=True)
@@ -51,7 +51,6 @@ def compute_monthly_prices():
     from create_data_lake import get_project_root
 
     project_path = str(get_project_root())
-
 
     temp = pd.read_csv(project_path + "/data_lake/cleansed/precios-horarios.csv")
     temp["ano_mes"] = temp["fecha"].map(lambda x: ano_mes(x))
