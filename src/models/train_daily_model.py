@@ -36,15 +36,11 @@ def train_daily_model():
         enforce_invertibility=False,
     )
 
-    time_series = mod.fit()
+    time_series = mod.fit(disp=0)
 
     filename = project_path + "/src/models/precios-diarios.pkl"
 
     pickle.dump(time_series, open(filename, "wb"))
-
-    # pickle.dump(time_series, open(filename, "wb"))
-
-    # raise NotImplementedError("Implementar esta función")
 
 
 if __name__ == "__main__":
