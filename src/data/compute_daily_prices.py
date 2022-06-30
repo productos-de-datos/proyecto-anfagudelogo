@@ -1,4 +1,10 @@
-def compute_daily_prices_pipe(df):
+"transform clean data grouping by day"
+
+import pandas as pd
+from create_data_lake import get_project_root
+
+
+def compute_daily_prices_pipe(dataframe):
     """Compute los precios promedios diarios.
 
     Usando el archivo data_lake/cleansed/precios-horarios.csv, compute el prcio
@@ -11,11 +17,10 @@ def compute_daily_prices_pipe(df):
 
 
     """
-    import pandas as pd
 
-    temp = df.copy()
-    temp = temp.groupby("fecha", as_index=False)["precio"].mean()
-    return temp
+    temporal_file = dataframe.copy()
+    temporal_file = temporal_file.groupby("fecha", as_index=False)["precio"].mean()
+    return temporal_file
 
 
 def compute_daily_prices():
@@ -31,14 +36,16 @@ def compute_daily_prices():
 
 
     """
-    import pandas as pd
-    from create_data_lake import get_project_root
 
     project_path = str(get_project_root())
 
-    temp = pd.read_csv(project_path + "/data_lake/cleansed/precios-horarios.csv")
-    temp = temp.groupby("fecha", as_index=False)["precio"].mean()
-    temp.to_csv(project_path + "/data_lake/business/precios-diarios.csv", index=False)
+    temporal_file = pd.read_csv(
+        project_path + "/data_lake/cleansed/precios-horarios.csv"
+    )
+    temporal_file = temporal_file.groupby("fecha", as_index=False)["precio"].mean()
+    temporal_file.to_csv(
+        project_path + "/data_lake/business/precios-diarios.csv", index=False
+    )
 
 
 # raise NotImplementedError("Implementar esta función")
