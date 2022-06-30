@@ -125,17 +125,20 @@ def test_09():
 
 
 def test_10():
+    os.system("make make_features")
     """Evalua la creación de características para modelos"""
     assert os.path.isfile("data_lake/business/features/precios_diarios.csv") is True
 
 
 def test_11():
     """Modelo creado"""
-    assert os.path.isfile("modeles/precios-diarios.pkl") is True
+    os.system("make train_model")
+    assert os.path.isfile("src/models/precios-diarios.pkl") is True
 
 
 def test_12():
     """Pronosticos"""
+    os.system("make make_forecasts")
     assert os.path.isfile("data_lake/business/forecasts/precios-diarios.csv") is True
 
 
